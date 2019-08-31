@@ -1,0 +1,37 @@
+version: '3'
+services:
+  node:
+    build: .
+    volumes:
+      - "./code:/code"
+    networks:
+      - local-nework
+    depends_on:
+      - mongo
+  nginx:
+    image: nginx:1.15-alpine
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - "./code:/code"
+      - "./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+      - "./log/nginx:/var/log/nginx"
+    depends_on:
+      - node
+    networks:
+      - local-nework
+  mongo:
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    networks:
+      - local-nework
+networks:
+  local-nework:
+    driver: bridge
