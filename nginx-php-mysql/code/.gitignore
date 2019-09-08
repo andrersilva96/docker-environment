@@ -1,4 +1,5 @@
 *
 !.gitignore
 !info.php
+!index.php
 !.editorconfig
