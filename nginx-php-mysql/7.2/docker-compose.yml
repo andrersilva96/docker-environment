@@ -1,7 +1,6 @@
 version: '3'
 services:
   nginx:
-    container_name: nginx
     image: nginx:1.15-alpine
     restart: always
     ports:
@@ -15,7 +14,7 @@ services:
     links:
       - php
   php:
-    build: "docker/php"
+    build: .
     volumes: 
       - "./code:/code"
       - "./log:/log"
