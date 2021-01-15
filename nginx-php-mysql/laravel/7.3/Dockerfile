@@ -8,8 +8,8 @@ RUN apk upgrade --update && apk add --no-cache \
 # gd image installed if you want to uninstall just exlude docker-php-ext-configure
 # and libzip-dev libpng-dev libjpeg-turbo-dev
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer global require hirak/prestissimo --no-plugins --no-scripts
+RUN curl -sS https://getcomposer.org/download/2.0.8/composer.phar --output /usr/local/bin/composer \
+    && chmod +x /usr/local/bin/composer
 
 # Create code dir
 RUN mkdir /code
