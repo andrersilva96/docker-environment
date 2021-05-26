@@ -4,6 +4,8 @@ WORKDIR /code
 
 COPY ./code/package*.json ./
 
-RUN npm install
+# run this one
+ENTRYPOINT [ "npm", "install" ]
 
-ENTRYPOINT [ "npm", "start" ]
+# comment the up and uncomment the above to run again docker-compose up --build
+# ENTRYPOINT [ "npm", "run", "start" ]
