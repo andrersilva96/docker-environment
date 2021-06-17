@@ -11,6 +11,10 @@ RUN apk upgrade --update && apk add --no-cache \
 RUN curl -sS https://getcomposer.org/download/2.0.8/composer.phar --output /usr/local/bin/composer \
     && chmod +x /usr/local/bin/composer
 
+RUN set -eux; \
+	addgroup -g 1000 -S host-user; \
+	adduser -u 1000 -D -S -G host-user host-user
+
 # Create code dir
 RUN mkdir /code
 
